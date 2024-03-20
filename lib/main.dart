@@ -23,13 +23,15 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final bool isSmallScreen = screenSize.width < 600;
-    final bool isMediumScreen = screenSize.width >= 600 && screenSize.width < 1200;
+    final bool isMediumScreen =
+        screenSize.width >= 600 && screenSize.width < 1200;
 
+    // final double buttonWidth = isSmallScreen ? double.infinity : (isMediumScreen ? screenSize.width / 2 : screenSize.width / 4);
     final spaceHeight = isSmallScreen ? 20.0 : 30.0;
 
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background_image.jpg'),
             fit: BoxFit.cover,
@@ -50,8 +52,8 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 32),
-                    Text(
+                    const SizedBox(height: 32),
+                    const Text(
                       'SalesPro',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -59,7 +61,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: spaceHeight),
-                    Container(
+                    // Container to SizedBox use
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: const TextField(
                         decoration: InputDecoration(
@@ -68,8 +71,8 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 22),
-                    Container(
+                    const SizedBox(height: 16),
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: const TextField(
                         obscureText: true,
@@ -81,10 +84,11 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(height: spaceHeight),
                     ConstrainedBox(
-                      constraints: BoxConstraints.tightFor(width: MediaQuery.of(context).size.width * 0.3),
+                      constraints: BoxConstraints.tightFor(
+                          width: MediaQuery.of(context).size.width * 0.3),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.deepPurpleAccent,
+                          backgroundColor: Colors.deepPurpleAccent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6),
                           ),
@@ -104,142 +108,142 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: spaceHeight),
                     isSmallScreen
                         ? Column(
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.teal,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Handle different login types
-                          },
-                          child: const Text(
-                            'Login as Admin',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.cyan,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Handle different login types
-                          },
-                          child: const Text(
-                            'Login as Staff',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Handle different login types
-                          },
-                          child: const Text(
-                            'Login as Customer',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.teal,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Handle different login types
+                                },
+                                child: const Text(
+                                  'Login as Admin',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.cyan,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Handle different login types
+                                },
+                                child: const Text(
+                                  'Login as Staff',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.black,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  // Handle different login types
+                                },
+                                child: const Text(
+                                  'Login as Customer',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: 0.5,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          flex: 3,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.teal,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.teal,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Handle different login types
+                                  },
+                                  child: const Text(
+                                    'Login as Admin',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                            onPressed: () {
-                              // Handle different login types
-                            },
-                            child: const Text(
-                              'Login as Admin',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
+                              const SizedBox(width: 4),
+                              Expanded(
+                                flex: 3,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.cyan,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Handle different login types
+                                  },
+                                  child: const Text(
+                                    'Login as Staff',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
+                              const SizedBox(width: 4),
+                              Expanded(
+                                flex: 3,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    // Handle different login types
+                                  },
+                                  child: const Text(
+                                    'Login as Customer',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(width: 4),
-                        Expanded(
-                          flex: 3,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.cyan,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                            onPressed: () {
-                              // Handle different login types
-                            },
-                            child: const Text(
-                              'Login as Staff',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 4),
-                        Expanded(
-                          flex: 3,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                            ),
-                            onPressed: () {
-                              // Handle different login types
-                            },
-                            child: const Text(
-                              'Login as Customer',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     TextButton(
                       onPressed: () {
                         // Handle forgot password
@@ -251,7 +255,7 @@ class LoginScreen extends StatelessWidget {
                       onPressed: () {
                         // Handle account registration
                       },
-                      child: Text('Register'),
+                      child: const Text('Register'),
                     ),
                   ],
                 ),
