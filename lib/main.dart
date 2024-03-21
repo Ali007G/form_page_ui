@@ -177,6 +177,8 @@ class LoginScreen extends StatelessWidget {
                                 flex: 3,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.all(10),
+                                    //maximumSize: Size(5, 5),
                                     backgroundColor: Colors.teal,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6),
@@ -191,6 +193,7 @@ class LoginScreen extends StatelessWidget {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500,
                                       letterSpacing: 0.5,
+
                                     ),
                                   ),
                                 ),
