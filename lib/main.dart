@@ -5,266 +5,973 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SalePro Login',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
+     // title: 'Drawer & NavBar',
+      home: HomeScreen(),
     );
   }
 }
 
-class LoginScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool _customTileExpanded = false;
+
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final bool isSmallScreen = screenSize.width < 600;
-    final bool isMediumScreen =
-        screenSize.width >= 600 && screenSize.width < 1200;
-
-    // final double buttonWidth = isSmallScreen ? double.infinity : (isMediumScreen ? screenSize.width / 2 : screenSize.width / 4);
-    final spaceHeight = isSmallScreen ? 20.0 : 30.0;
-
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background_image.jpg'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: spaceHeight),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.85,
-                width: MediaQuery.of(context).size.width * 0.6,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+      appBar: AppBar(
+        title: Text('Sidebar & Navbar'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            InkWell(
+              onTap: (){},
+              child: Container(
+                padding: EdgeInsets.all(20),
+                height: 70,
+                width: 90,
+                color: Colors.white,
+                child: const Text(
+                  'Vuexy',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(height: 32),
-                    const Text(
-                      'SalesPro',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
-                    SizedBox(height: spaceHeight),
-                    // Container to SizedBox use
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          labelText: 'UserName',
-                          border: UnderlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      child: const TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          border: UnderlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: spaceHeight),
-                    ConstrainedBox(
-                      constraints: BoxConstraints.tightFor(
-                          width: MediaQuery.of(context).size.width * 0.3),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurpleAccent,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          'Login',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 0.5,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: spaceHeight),
-                    isSmallScreen
-                        ? Column(
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.teal,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  // Handle different login types
-                                },
-                                child: const Text(
-                                  'Login as Admin',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.cyan,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  // Handle different login types
-                                },
-                                child: const Text(
-                                  'Login as Staff',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.black,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  // Handle different login types
-                                },
-                                child: const Text(
-                                  'Login as Customer',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: 0.5,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(10),
-                                    //maximumSize: Size(5, 5),
-                                    backgroundColor: Colors.teal,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    // Handle different login types
-                                  },
-                                  child: const Text(
-                                    'Login as Admin',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.5,
+              ),
+            ),
+            ExpansionTile(
+              title: Text('Dashboard'),
+              leading: const Icon(
+                Icons.home,
+                size: 25,
+                color: Colors.grey,
+              ),
+              trailing: Icon(Icons.arrow_right),
+              children: [
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Analytics'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('CRM'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('eCommerce'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Logistics'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Academy'),
+                ),
+              ],
+            ),
+            /*ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.home,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Dashboard',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Icon(Icons.arrow_right,),
+              onLongPress: (){},
+            ),*/
+            ExpansionTile(
+              title: Text('Layouts'),
+              leading: const Icon(
+                Icons.layers_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              trailing: Icon(Icons.arrow_right),
+              children: [
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Collapsed menu'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Content navbar'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Content nav + Sidebar'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Horizontal'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Without menu'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Without navbar'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Fluid'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Container'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Blank'),
+                ),
+              ],
+            ),
 
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                flex: 3,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.cyan,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    // Handle different login types
-                                  },
-                                  child: const Text(
-                                    'Login as Staff',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                flex: 3,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.black,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                  ),
-                                  onPressed: () {
-                                    // Handle different login types
-                                  },
-                                  child: const Text(
-                                    'Login as Customer',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500,
-                                      letterSpacing: 0.5,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                    const SizedBox(height: 16),
-                    TextButton(
-                      onPressed: () {
-                        // Handle forgot password
-                      },
-                      child: const Text('Forgot Password?'),
+            /*ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.layers_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Layouts',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),*/
+            ExpansionTile(
+              title: Text('Front Pages'),
+              leading: Icon(
+                Icons.restore_page_sharp,
+                size: 25,
+                color: Colors.grey,
+              ),
+              trailing: Icon(Icons.arrow_right),
+              children: [
+                ListTile(
+                  onTap: () {},
+                  leading: Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Landing'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Pricing'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Payment'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Checkout'),
+                ),
+                ListTile(
+                  onTap: () {},
+                  leading: const Icon(
+                    Icons.radio_button_off_outlined,
+                    size: 15,
+                    color: Colors.grey,
+                  ),
+                  title: Text('Help Center'),
+                ),
+              ],
+            ),
+
+            /*ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.restore_page_sharp,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Front Pages',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),*/
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '    APPS & PAGES',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.email_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Email',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.chat,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Chat',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.calendar_month_sharp,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Calendar',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.view_kanban_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Kanban',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            Column(
+              children: [
+                ExpansionTile(
+                  title: Text('eCommerce'),
+                  leading: Icon(
+                    Icons.restore_page_sharp,
+                    size: 25,
+                    color: Colors.grey,
+                  ),
+                  trailing: Icon(Icons.arrow_right),
+                  children: [
+                    ListTile(
+                      onTap: () {},
+                      leading: const Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Dashboard'),
                     ),
-                    const Text('Do not have an account'),
-                    TextButton(
-                      onPressed: () {
-                        // Handle account registration
-                      },
-                      child: const Text('Register'),
+                    ExpansionTile(title: Text('Products'),
+                      leading: Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      trailing: Icon(Icons.arrow_right),
+                      children: [
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Product list'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Add Product'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Category List'),
+                        ),
+                      ],
+                    ),
+                    ExpansionTile(title: Text('Order'),
+                      leading: Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      trailing: Icon(Icons.arrow_right),
+                      children: [
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Order List'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Order Details'),
+                        ),
+                      ],
+                    ),
+                    ExpansionTile(title: Text('Customer'),
+                      leading: Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      trailing: Icon(Icons.arrow_right),
+                      children: [
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('All Customers'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Customer Details'),
+                        ),
+                      ],
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      leading: const Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Manage Reviews'),
+                    ),
+                    ListTile(
+                      onTap: () {},
+                      leading: const Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      title: Text('Referrals'),
+                    ),
+                    ExpansionTile(title: Text('Settings'),
+                      leading: Icon(
+                        Icons.radio_button_off_outlined,
+                        size: 15,
+                        color: Colors.grey,
+                      ),
+                      trailing: Icon(Icons.arrow_right),
+                      children: [
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Store Details'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Payments'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Payments'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Shipping & Delivery'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Locations'),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          leading: const Icon(
+                            Icons.radio_button_off_outlined,
+                            size: 15,
+                            color: Colors.grey,
+                          ),
+                          title: Text('Notifications'),
+                        ),
+                      ],
                     ),
                   ],
                 ),
+              ],
+            ),
+
+            /*ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.label_important_outline_rounded,
+                size: 25,
+                color: Colors.grey,
               ),
-            ],
-          ),
+              title: const Text(
+                'eCommerce',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),*/
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.import_contacts,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Academy',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.car_crash,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Logistics',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.request_page_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Invoice',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.people,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Users',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.settings,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Roles & Permissions',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.padding_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Pages',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.lock,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Authentications',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.view_array_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Wizard Examples',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.rectangle_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Modal Examples',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '    COMPONENTS',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.card_giftcard_rounded,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Cards',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.view_column,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'User Interface',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.ac_unit_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Extended UI',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.restore_page_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Icons',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '    FORMS & TABLES',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.join_right,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Forms Elements',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.format_indent_increase_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Form Layouts',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.playlist_add_check_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Forms Wizard',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.align_horizontal_right,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Form Validation',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.table_chart_sharp,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Tables',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.data_thresholding_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Datatables',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '    Charts & Maps',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.pie_chart,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Charts',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.map_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Leaflet Maps',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Text(
+              '    MISC',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.support,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Support',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              leading: const Icon(
+                Icons.file_copy_outlined,
+                size: 25,
+                color: Colors.grey,
+              ),
+              title: const Text(
+                'Documentation',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
