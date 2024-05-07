@@ -12,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Profile'),
+          backgroundColor: Colors.grey,
         ),
         body: ProfileBody(),
       ),
@@ -25,71 +26,139 @@ class ProfileBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        const SizedBox(height: 24),
+        const Row(
+         mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 8.0),
+              padding: const EdgeInsets.all(30),
               child: CircleAvatar(
-                radius: 30,
-                backgroundImage: AssetImage('assets/profile_image.jpg'), // You need to replace this with your actual image path
+                radius: 40,
+                backgroundImage: AssetImage('assets/images/raihan.png'),
               ),
             ),
+            //const SizedBox(height: 12),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('John Doe', style: TextStyle(fontWeight: FontWeight.bold)),
-                Text('ID: 12345'),
-                Text('Phone: 123-456-7890'),
+                Text('Raihan Hossain', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('একাদশ-দ্বাদশ', style: TextStyle(fontWeight: FontWeight.w400)),
+                Text('অজিত গুহ মহাবিদ্যালয়', style: TextStyle(fontWeight: FontWeight.w400)),
               ],
             ),
-            SizedBox(width: 8),
           ],
         ),
-        SizedBox(height: 20),
+      //  const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ProfileButton(title: 'Home'),
-            SizedBox(width: 24,),
-            ProfileButton(title: 'Course'),
-            SizedBox(width: 24,),
-            ProfileButton(title: 'Profile'),
-            // ElevatedButton(onPressed: () {}
-            //     child: Icon(Icons.home, ),)
+            TextButton(onPressed: () {},
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.home, size: 30,),
+                  Text('হোম',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 16,
+                  ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 36),
+            TextButton(onPressed: () {},
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.add_box, size: 30,),
+                  Text('কোর্স',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 36),
+            TextButton(onPressed: () {},
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.person, size: 30,),
+                  Text('প্রোফাইল',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-        SizedBox(height: 24,),
-        Center(
-          child: TextButton(
-            onPressed: () {},
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        const SizedBox(height: 12,),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          color: Colors.blueAccent.shade100,
+          //child: Text('জন্ম তারিখঃ  16-07-1999'),
+          child: RichText(
+            text: const TextSpan(
               children: [
-                Icon(Icons.home),
-                Text('Home'),
-              ],
+                TextSpan(
+                  text: 'জন্ম তারিখঃ',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text: '16-07-1999',
+                  style: TextStyle(fontWeight: FontWeight.w400),
+                ),
+              ]
             ),
           ),
         ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          //color: Colors.blueAccent.shade100,
+          child: Text('মোবাইল নাম্বারঃ 01863995432'),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          color: Colors.blueAccent.shade100,
+          child: Text('ইমেইলঃ hossahossainraihan02@gmail.com'),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          //color: Colors.blueAccent.shade100,
+          child: Text('পিতার নামঃ Hafiz Abdul Hannan'),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          color: Colors.blueAccent.shade100,
+          child: Text('মাতার নামঃ Hazera Begum'),
+        ),
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 40,
+          width: 480,
+          //color: Colors.blueAccent.shade100,
+          child: Text('ঠিকানাঃ Housing Estate, Section 4, Comilla'),
+        ),
       ],
-    );
-  }
-}
-
-class ProfileButton extends StatelessWidget {
-  final String title;
-
-  ProfileButton({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        // Add functionality for each button
-      },
-      child: Text(title),
     );
   }
 }
