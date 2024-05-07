@@ -16,40 +16,32 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class PercentCall extends StatefulWidget {
+class PercentCall extends StatelessWidget {
   const PercentCall({super.key});
 
   @override
-  State<PercentCall> createState() => _PercentCallState();
-}
-
-class _PercentCallState extends State<PercentCall> {
-  @override
   Widget build(BuildContext context) {
-
-    var math_page_list = [
-      'assets/math_page/m1.png',
-      'assets/math_page/m2.png',
-      'assets/math_page/m3.png',
-      'assets/math_page/m4.png',
-      'assets/math_page/m5.png',
+    var lecture_page_list = [
+      'assets/images/video_lecture_img.png',
+      'assets/images/lecture_note_img.png',
     ];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Math Problem Screen'),
+        title: const Text('ICT'),
+        backgroundColor: Colors.blueGrey,
         centerTitle: true,
       ),
       body: ListView.builder(
-          itemCount: math_page_list.length,
+          itemCount: lecture_page_list.length,
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
               },
               child: Padding(
                 // padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(math_page_list[index]),
+                padding: const EdgeInsets.fromLTRB(8, 12, 8, 10),
+                child: Image.asset(lecture_page_list[index]),
               ),
             );
           }),
