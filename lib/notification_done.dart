@@ -10,15 +10,15 @@ class ProfileScreen extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-         // backgroundColor: Colors.black12,
+          // backgroundColor: Colors.black12,
           appBar: AppBar(
             title: Text('Notification'),
             backgroundColor: Colors.blueAccent,
             actions: [
               IconButton(onPressed: () {},
-                  icon: const Icon(
-                    Icons.more_vert, size: 30,
-                  ),
+                icon: const Icon(
+                  Icons.more_vert, size: 30,
+                ),
               ),
             ],
           ),
@@ -29,10 +29,10 @@ class ProfileScreen extends StatelessWidget {
               const ListTile(
                 tileColor: Colors.white,
                 title: Text('Today',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const Divider(thickness: 1,),
@@ -45,9 +45,9 @@ class ProfileScreen extends StatelessWidget {
                       TextSpan(
                         text: 'Ikbal Ahmed',
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.indigo
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.indigo
                         ),
                       ),
                       TextSpan(
@@ -65,9 +65,9 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Text('Assalamu alaikum!! Number system converting tricks ',
                       style: TextStyle(
-                        fontSize: 15,
-                        // fontWeight: FontWeight.bold,
-                        color: Colors.black
+                          fontSize: 15,
+                          // fontWeight: FontWeight.bold,
+                          color: Colors.black
                       ),
                     ),
                     Text('2 min ago',
